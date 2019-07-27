@@ -42,7 +42,7 @@ public class SimpleMySQLTest extends AbstractContainerDatabaseTest {
     @Test
     public void testSimple() throws SQLException {
         MySQLContainer mysql = (MySQLContainer) new MySQLContainer()
-                .withConfigurationOverride("somepath/mysql_conf_override")
+//                .withConfigurationOverride("somepath/mysql_conf_override")
                 .withLogConsumer(new Slf4jLogConsumer(logger));
         mysql.start();
 

@@ -16,6 +16,12 @@ abstract class AbstractContainerDatabaseTest {
 
     private final Set<HikariDataSource> datasourcesForCleanup = new HashSet<>();
 
+    void performCUDQuery(JdbcDatabaseContainer container, String sql) throws SQLException {
+        DataSource ds = getDataSource(container);
+        Statement statement = ds.getConnection().createStatement();
+        statement.execute(sql);
+    }
+
     ResultSet performQuery(JdbcDatabaseContainer container, String sql) throws SQLException {
         DataSource ds = getDataSource(container);
         Statement statement = ds.getConnection().createStatement();

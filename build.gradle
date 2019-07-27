@@ -28,4 +28,5 @@ dependencies {
 	testCompile 'org.testcontainers:testcontainers:1.11.3'
 	testCompile 'org.testcontainers:mysql:1.11.3'
 	testCompile 'com.zaxxer:HikariCP-java6:2.3.8'
+	testCompile 'mysql:mysql-connector-java:8.0.14'
 }
