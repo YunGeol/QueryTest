@@ -1,13 +1,14 @@
 plugins {
 	id 'org.springframework.boot' version '2.1.6.RELEASE'
 	id 'java'
+	id "io.freefair.lombok" version "3.8.1"
 }
 
 apply plugin: 'io.spring.dependency-management'
 
 group = 'play.testcontainer'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = JavaVersion.VERSION_12
 
 configurations {
 	compileOnly {
@@ -21,12 +22,10 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	testCompile 'org.testcontainers:testcontainers:1.11.3'
 	testCompile 'org.testcontainers:mysql:1.11.3'
-	testCompile 'com.zaxxer:HikariCP-java6:2.3.8'
+	testCompile 'com.zaxxer:HikariCP:3.3.1'
 	testCompile 'mysql:mysql-connector-java:8.0.14'
 }

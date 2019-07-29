@@ -20,21 +20,25 @@ public class QueryOrderingTest extends AbstractContainerDatabaseTest {
 
         performCUDQuery(mysql, "CREATE TABLE dept (\n" +
                 "  dept_no INT(11) unsigned NOT NULL,\n" +
-                "  dept_name VARCHAR(32) NOT NULL,\n" +
-                "  PRIMARY KEY (dept_no)\n" +
+                "  dept_name VARCHAR(32) NOT NULL\n" +
+//                "  PRIMARY KEY (dept_no)\n" +
                 ");");
-        performCUDQuery(mysql, "insert into dept(dept_no, dept_name) values(3, 'name03')");
+
+        performCUDQuery(mysql, "create UNIQUE index dept_name_idx on dept(dept_name desc)");
+
+        performCUDQuery(mysql, "insert into dept(dept_no, dept_name) values(3, 'name01')");
         performCUDQuery(mysql, "insert into dept(dept_no, dept_name) values(2, 'name02')");
-        performCUDQuery(mysql, "insert into dept(dept_no, dept_name) values(7, 'name07')");
+        performCUDQuery(mysql, "insert into dept(dept_no, dept_name) values(7, 'name03')");
         performCUDQuery(mysql, "insert into dept(dept_no, dept_name) values(4, 'name04')");
-        performCUDQuery(mysql, "insert into dept(dept_no, dept_name) values(1, 'name01')");
+        performCUDQuery(mysql, "insert into dept(dept_no, dept_name) values(1, 'name05')");
+
 
         ResultSet rs = performQuery(mysql, "select * from dept");
 
-        while(rs.next()) {
+        do {
             System.out.print("dept_no : "+rs.getInt(1));
             System.out.println(", dept_name : "+rs.getString(2));
-        }
+        } while(rs.next());
 
         System.out.println("Test ended!!");
 
